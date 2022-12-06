@@ -1,0 +1,7 @@
+package com.example.patientapp_backend.dao;
+
+import com.example.patientapp_backend.model.Patients;
+import org.springframework.data.repository.CrudRepository;
+
+public interface PatientDao extends CrudRepository<Patients,Integer> {
+}
