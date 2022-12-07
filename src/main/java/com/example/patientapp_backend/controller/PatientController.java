@@ -5,7 +5,9 @@ import com.example.patientapp_backend.model.Patients;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class PatientController {
@@ -13,7 +15,7 @@ public class PatientController {
     private PatientDao dao;
     @CrossOrigin(origins = "*")
     @PostMapping(path = "/add",consumes = "application/json",produces = "application/json")
-    public String PatientAdd(@RequestBody Patients p)
+    public Map<String,String> PatientAdd(@RequestBody Patients p)
     {
         System.out.println(p.getPid().toString());
         System.out.println(p.getPname().toString());
@@ -22,7 +24,9 @@ public class PatientController {
         System.out.println(p.getDoapp().toString());
         System.out.println(p.getDname().toString());
         dao.save(p);
-        return "Patient added successfully";
+        HashMap<String,String> map=new HashMap<>();
+        map.put("status","success");
+        return map;
     }
     @CrossOrigin(origins = "*")
     @GetMapping("/view")
